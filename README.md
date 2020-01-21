@@ -18,7 +18,7 @@ mkdir -p ./test/specs
 
 #### Create a new file in that folder:
 
-touch ./test/specs/register.js
+touch ./test/specs/register.spec.js
 
 In this folder you can write your tests.
 
