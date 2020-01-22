@@ -69,5 +69,22 @@ const answers = {
   message: 'Diary created'
 };
 
+const groupsPageSelectors = {
+  groupButton: 'a[qa="groups-link"]',
+  h1: 'h1',
+  createNewGroupButton: 'a[qa="create-group-button"]',
+  groupNameInput: 'input[name="name"]',
+  accessTypeInput: 'select[name="accessType"]',
+  createButton: 'button[type="submit"]',
+  messageInput: '//h4[@class="notification-title"]'
+};
 
-module.exports = { URL_REGISTER, URL_LOGIN, user, page, pageRegisterSelectors, pageLoginSelectors, adminData, pageDailyReportsSelectors, createDayReportPageSelectors, answers };
+const groupsPageData = {
+  h1: 'Groups',
+  groupName: 'Test',
+  accesstype: 'All',
+  message: 'Group created'
+};
+
+
+module.exports = { URL_REGISTER, URL_LOGIN, user, page, pageRegisterSelectors, pageLoginSelectors, adminData, pageDailyReportsSelectors, createDayReportPageSelectors, answers, groupsPageSelectors, groupsPageData };
