@@ -86,5 +86,26 @@ const groupsPageData = {
   message: 'Group created'
 };
 
+const flashCardsSelectors = {
+  cardsButton: 'a[qa="cards-link"]',
+  h1: 'h1',
+  createNewFlashGroupButton: 'button[qa="flash-create-new-group"]',
+  modalBody: 'div.modal-body',
+  h5Input: 'h5.modal-title',
+  groupNameInput: 'input[name="name"]',
+  groupDescriptionInput: 'input[name="description"]',
+  createButton: 'button[class="btn btn-primary"]',
+  messageInput: '//h4[@class="notification-title"]'
+};
 
-module.exports = { URL_REGISTER, URL_LOGIN, user, page, pageRegisterSelectors, pageLoginSelectors, adminData, pageDailyReportsSelectors, createDayReportPageSelectors, answers, groupsPageSelectors, groupsPageData };
+const cardsPageData = {
+  h1: 'FlashCards',
+  h5: 'Create Flash Group',
+  groupName: 'Test',
+  groupDescription: 'abcdefg',
+  errorMessage: 'Flash Group create Error'
+};
+
+module.exports = { URL_REGISTER, URL_LOGIN, user, page, pageRegisterSelectors, pageLoginSelectors, adminData,
+  pageDailyReportsSelectors, createDayReportPageSelectors, answers, groupsPageSelectors, groupsPageData,
+  flashCardsSelectors, cardsPageData  };
