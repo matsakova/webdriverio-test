@@ -85,11 +85,4 @@ describe('Register, Login , Profile pages', () => {
     element.click();
   });
 
-  it('should have a correct header', () => {
-    const actual = $('h1.mb-3').getText();
-    const expected = user.firstName + ' ' + user.lastName;
-    expect(actual).equal(expected);
-    browser.pause(3000);
-  });
-
 });

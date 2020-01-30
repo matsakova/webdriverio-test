@@ -60,11 +60,4 @@ describe('CREATE DAY REPORT', () => {
     browser.pause(2000);
   });
 
-  it('should check the message', () => {
-    const actualH4 = browser.$(pageDailyReportsSelectors.messageInput).getText();
-    const expectedH4 = answers.message;
-    expect(actualH4).equal(expectedH4);
-    browser.pause(3000);
-  });
-
 });

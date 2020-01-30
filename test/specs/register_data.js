@@ -2,7 +2,7 @@ const URL_REGISTER = 'https://stage.pasv.us/user/register';
 const URL_LOGIN = 'https://stage.pasv.us/user/login';
 
 const user = {
-  email : 'masha2@test.com',
+  email : Math.random() + 'masha2@test.com',
   firstName: 'Masha',
   lastName: 'Popova',
   cellPhoneNumber: 11111111111,
@@ -65,7 +65,7 @@ const createDayReportPageSelectors = {
 const answers = {
   morale: '8',
   hours: '7',
-  howWasYourDay: 'Great! Solved Codewars Katas!!!',
+  howWasYourDay: 'qwertyqwertyqwertyqwertyqwerty',
   message: 'Diary created'
 };
 
@@ -106,6 +106,25 @@ const cardsPageData = {
   errorMessage: 'Flash Group create Error'
 };
 
+const coursesPageSelectors = {
+  coursesButton: 'a[qa="courses-link"]',
+  h1: 'h1',
+  createNewCourseButton: 'a[href="/course/create"]',
+  createCourseHeader: 'span[class="h1 mr-4"]',
+  courseNameInput: 'input[name="name"]',
+  courseDescriptionInput: 'input[name="description"]',
+  accessTypeDropdown: 'select[name="accessType"]',
+  createButton: 'button[type="submit"]'
+};
+
+const coursesPageAnswers = {
+  header: 'Courses',
+  createCourseHeader: 'Create Course',
+  courseNameInput: 'test2020',
+  courseDescriptionInput: 'abc',
+  accessTypeDropdown: 'All',
+};
+
 module.exports = { URL_REGISTER, URL_LOGIN, user, page, pageRegisterSelectors, pageLoginSelectors, adminData,
   pageDailyReportsSelectors, createDayReportPageSelectors, answers, groupsPageSelectors, groupsPageData,
-  flashCardsSelectors, cardsPageData  };
+  flashCardsSelectors, cardsPageData, coursesPageSelectors, coursesPageAnswers};
