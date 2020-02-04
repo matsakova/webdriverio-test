@@ -5,51 +5,63 @@ const { URL_LOGIN, pageLoginSelectors, adminData, groupsPageSelectors, groupsPag
 describe('CREATE NEW GROUP', () => {
   before('Login as admin', () => {
     browser.url(URL_LOGIN);
-    $(pageLoginSelectors.emailInput).setValue(adminData.login);
-    $(pageLoginSelectors.passwordInput).setValue(adminData.password);
-    $(pageLoginSelectors.loginButton).click();
-    browser.pause(2000);
+    browser.$('//form//input[@name="email"]').setValue('admin@test.com');
+    browser.$('//form//input[@name="password"]').setValue('11111');
+    browser.$('//form//button[@type="submit"]').click();
+    browser.pause(1000);
   });
 
   it('should click Groups button', () => {
-    const element = $(groupsPageSelectors.groupButton);
-    element.click();
+    browser.$('//div[@id="site-menu"]//a[@qa="groups-link"]').click();
     browser.pause(1000);
-  });
-
-  it('should check the header', () => {
-    const actual = $(groupsPageSelectors.h1).getText();
-    const expected = groupsPageData.h1;
-    expect(actual).equal(expected);
   });
 
   it('should click Create new Group button', () => {
-    const element = $(groupsPageSelectors.createNewGroupButton);
-    element.click();
+    browser.$('//a[@qa="create-group-button"]').click();
     browser.pause(1000);
   });
 
-  it('should fill Group name field', () => {
-    const element = $(groupsPageSelectors.groupNameInput);
-    element.setValue(groupsPageData.groupName);
+  it('should fill out Group name field', () => {
+    const element = browser.$('//form//input[@name="name"]');
+    element.setValue('test group1');
+  });
+
+  it('should fill out Group description field', () => {
+    const element = browser.$('//form//input[@name="description"]');
+    element.setValue('new description');
   });
 
   it('should choose one option in Access type dropdown', () => {
-    const dropdown = $(groupsPageSelectors.accessTypeInput);
-    dropdown.selectByVisibleText(groupsPageData.accesstype);
+    const dropdown = browser.$('//form//select[@name="accessType"]');
+    dropdown.selectByVisibleText('Members');
   });
 
   it('should click Create button', () => {
-    const element = $(groupsPageSelectors.createButton);
-    element.click();
+    browser.$('//form//button[@type="submit"]').click();
+    browser.pause(2000);
+  });
+
+  it('should first item in the list be equal created group title', () => {
+    const actualTitle = browser.$('//div[@qa="group-list"]//h4/a').getText();
+    const expectedTitle = 'test group1';
+    expect(actualTitle).eq(expectedTitle);
+  });
+
+  it('should first item in the list be equal created group access type', () => {
+    const actualAccessType = browser.$('//div[@qa="group-list"]//span[@qa="access-type"]').getText();
+    const expectedAccessType = 'Only for members';
+    expect(actualAccessType).eq(expectedAccessType);
+  });
+
+  it('should verify created group is clickable', () => {
+    browser.$('//div[@qa="group-list"]//h4/a').click();
     browser.pause(1000);
   });
 
-  it('should check the message', () => {
-    const actualH4 = browser.$(groupsPageSelectors.messageInput).getText();
-    const expectedH4 = groupsPageData.message;
-    expect(actualH4).equal(expectedH4);
-    browser.pause(3000);
+  it('should clicked group have correct title', () => {
+    const actual = browser.$('h1').getText();
+    const expected = 'Group test group1';
+    expect(actual).eq(expected);
   });
 
 });

@@ -19,7 +19,7 @@ describe('FLASH GROUP CREATE', () => {
     browser.$('//div[@id="site-menu"]//a[@qa="cards-link"]').click();
   });
 
-  it('should click button Create new FlashGroup', () => {
+  it('should click Create new FlashGroup button', () => {
     browser.$('//button[@qa="flash-create-new-group"]').click();
     browser.pause(500);
   });
@@ -51,13 +51,13 @@ describe('FLASH GROUP CREATE', () => {
     browser.pause(500);
   });
 
-  it('should first item in list be equal created group title', () => {
+  it('should first item in the list be equal created group title', () => {
     const actualTitle = browser.$('//div[@qa="flash-group-list "]//h4/a').getText();
     const expectedTitle = 'My group name 555';
     expect(actualTitle).eq(expectedTitle);
   });
 
-  it('should first item in list be equal created group description', () => {
+  it('should first item in the list be equal created group description', () => {
     const actualDescription = browser.$('//div[@qa="flash-group-list "]//div[@qa="description"]').getText();
     const expectedDescription = '7777777';
     expect(actualDescription).eq(expectedDescription);
@@ -69,7 +69,7 @@ describe('FLASH GROUP CREATE', () => {
     browser.pause(300);
   });
 
-  it('should clicked group has correct title', () => {
+  it('should clicked group have correct title', () => {
     const actual = browser.$('h1').getText();
     const expected = 'My group name 555';
     expect(actual).eq(expected);

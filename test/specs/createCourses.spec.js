@@ -5,55 +5,41 @@ const { URL_LOGIN, pageLoginSelectors, adminData, coursesPageAnswers, coursesPag
 describe('CREATE COURSES', () => {
   before('Login as admin', () => {
     browser.url(URL_LOGIN);
-    $(pageLoginSelectors.emailInput).setValue(adminData.login);
-    $(pageLoginSelectors.passwordInput).setValue(adminData.password);
-    $(pageLoginSelectors.loginButton).click();
-    browser.pause(2000);
+    browser.$('//form//input[@name="email"]').setValue('admin@test.com');
+    browser.$('//form//input[@name="password"]').setValue('11111');
+    browser.$('//form//button[@type="submit"]').click();
+    browser.pause(1000);
   });
 
   it('should click Courses button', () => {
-    const element = $(coursesPageSelectors.coursesButton);
-    element.click();
+    browser.$('//div[@id="site-menu"]//a[@qa="courses-link"]').click();
     browser.pause(1000);
-  });
-
-  it('should check the header', () => {
-    const actual = $(coursesPageSelectors.h1).getText();
-    const expected = coursesPageAnswers.header;
-    expect(actual).equal(expected);
   });
 
   it('should click Create new Course button', () => {
-    const element = $(coursesPageSelectors.createNewCourseButton);
-    element.click();
+    browser.$('//div[@class="form-group"]//a').click();
     browser.pause(1000);
   });
 
-  it('should check the header Create Course', () => {
-    const actual = $(coursesPageSelectors.createCourseHeader).getText();
-    const expected = coursesPageAnswers.createCourseHeader;
-    expect(actual).equal(expected);
+  it('should fill out Course name field', () => {
+    const element = browser.$('//form//input[@name="name"]');
+    element.setValue('new new course');
   });
 
-  it('should fill Course name field', () => {
-    const element = $(coursesPageSelectors.courseNameInput);
-    element.setValue(coursesPageAnswers.courseNameInput);
-  });
-
-  it('should fill Course description field', () => {
-    const element = $(coursesPageSelectors.courseDescriptionInput);
-    element.setValue(coursesPageAnswers.courseDescriptionInput);
+  it('should fill out Course description field', () => {
+    const element = browser.$('//form//input[@name="description"]');
+    element.setValue('abc');
   });
 
   it('should choose one option in Access type dropdown', () => {
-    const dropdownList = $(coursesPageSelectors.accessTypeDropdown);
-    dropdownList.selectByVisibleText(coursesPageAnswers.accessTypeDropdown);
+    const dropdownList = browser.$('//form//select[@name="accessType"]');
+    dropdownList.selectByVisibleText('All');
   });
 
   it('should click Create button', () => {
-    const element = $(coursesPageSelectors.createButton);
-    element.click();
+    browser.$('//form//button[@type="submit"]').click();
     browser.pause(1000);
   });
+
 
 });
