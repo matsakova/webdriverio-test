@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const { URL_LOGIN, pageLoginSelectors, adminData, cardsPageData, flashCardsSelectors } = require('./register_data');
+const { URL_LOGIN, pageLoginSelectors, adminData, cardsPageData, flashCardsSelectors } = require('../register/register_data');
 
 describe('QUIZ CREATE', () => {
   before('Login as admin', () => {

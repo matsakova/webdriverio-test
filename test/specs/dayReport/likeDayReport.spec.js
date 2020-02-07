@@ -1,6 +1,8 @@
 const { expect } = require('chai');
 
-const { loginAsAdmin, logoutAsAdmin } = require('./actions');
+const { loginAsAdmin, logout, clickDiaryButton } = require('./actionsDayReport');
+
+const { likeSelectors } = require('./dataDayReport');
 
 
 describe('DAY REPORT LIKE', () => {
@@ -10,22 +12,21 @@ describe('DAY REPORT LIKE', () => {
   });
 
   after('Logout', () => {
-    logoutAsAdmin();
+    logout();
     browser.pause(2000);
   });
 
   it('should click Diary button', () => {
-    browser.$('//div[@id="site-menu"]//a[@qa="diary-link"]').click();
-    browser.pause(500);
+    clickDiaryButton ();
   });
 
   it('should click Like button', () => {
-    browser.$('//div[@qa="day-report-item-0"]//button[@qa="like-button"]').click();
+    browser.$(likeSelectors.likeButton).click();
     browser.pause(1000);
   });
 
   it('should verify whether diary was liked', () => {
-    const el = browser.$('//div[@qa="day-report-item-0"]//button[@qa="like-button"]').isEnabled();
+    const el = browser.$(likeSelectors.likeMark).isEnabled();
     expect(el).eq(false);
   });
 

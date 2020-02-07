@@ -1,6 +1,8 @@
 const { expect } = require('chai');
 
-const { loginAsAdmin, logoutAsAdmin } = require('./actions');
+const { loginAsAdmin, logout, clickDiaryButton } = require('./actionsDayReport');
+
+const { deleteSelectors } = require('./dataDayReport');
 
 
 describe('DAY REPORT DELETE', () => {
@@ -10,17 +12,16 @@ describe('DAY REPORT DELETE', () => {
   });
 
   after('Logout as admin', () => {
-    logoutAsAdmin();
+    logout();
     browser.pause(2000);
   });
 
   it('should click Diary button', () => {
-    browser.$('//div[@id="site-menu"]//a[@qa="diary-link"]').click();
-    browser.pause(500);
+    clickDiaryButton ();
   });
 
   it('should click Delete button', () => {
-    browser.$('//div[@qa="day-report-item-0"]//button[@qa="delete-button"]').click();
+    browser.$(deleteSelectors.deleteButton).click();
     browser.pause(1000);
   });
 

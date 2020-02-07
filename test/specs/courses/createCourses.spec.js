@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const { URL_LOGIN, pageLoginSelectors, adminData, coursesPageAnswers, coursesPageSelectors} = require('./register_data');
+const { URL_LOGIN, pageLoginSelectors, adminData, coursesPageAnswers, coursesPageSelectors} = require('../register/register_data');
 
 describe('CREATE COURSES', () => {
   before('Login as admin', () => {

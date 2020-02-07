@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 
-const { loginAsStudent, logoutAsStudent } = require('./actions');
+const { loginAsStudent, logout, clickDiaryButton } = require('./actionsDayReport');
+const { diaryPageSelectors, diaryPageData } = require('./dataDayReport');
 
 describe('DAY REPORT CREATE', () => {
   before('Login as student', () => {
@@ -8,53 +9,52 @@ describe('DAY REPORT CREATE', () => {
   });
 
   after('Logout as Student', () => {
-    logoutAsStudent();
+    logout();
   });
 
   it('should click Diary button', () => {
-    browser.$('//div[@id="site-menu"]//a[@qa="diary-link"]').click();
-    browser.pause(300);
+    clickDiaryButton ();
   });
 
   it('should click Create day report button', () => {
-    browser.$('//a[@qa="create-day-report-button"]').click();
+    browser.$(diaryPageSelectors.createDayReportButton).click();
     browser.pause(300);
   });
 
   it('should mark the checkbox', () => {
-    browser.$('//div[@qa="day-report-marks"]//input[@label="Helped classmates"]').click();
+    browser.$(diaryPageSelectors.markCheckbox).click();
   });
 
   it('should choose one option in Morale dropdown', () => {
-    const dropdown = browser.$('//select[@name="morale"]');
-    dropdown.selectByVisibleText('9');
+    const dropdown = browser.$(diaryPageSelectors.morale);
+    dropdown.selectByVisibleText(diaryPageData.morale);
   });
 
   it('should fill out Hours field', () => {
-    const element = browser.$('//input[@name="hours"]');
-    element.setValue(5);
+    const element = browser.$(diaryPageSelectors.hours);
+    element.setValue(diaryPageData.hours);
   });
 
   it('should fill out How was your day? field', () => {
-    const element = browser.$('//textarea[@name="description"]');
-    element.setValue('gogogogogogogoogogogogogogogogo');
+    const element = browser.$(diaryPageSelectors.howWasYourDay);
+    element.setValue(diaryPageData.howWasYourDay);
   });
 
   it('should click Save button', () => {
-    const element = browser.$('//button[@type="submit"]');
+    const element = browser.$(diaryPageSelectors.saveButton);
     element.click();
     browser.pause(2000);
   });
 
   it('should first item in the list be equal created day report description', () => {
-    const actualText = browser.$('//div[@qa="day-report-item-0"]//div[@qa="description"]').getText();
-    const expectedText = 'gogogogogogogoogogogogogogogogo';
+    const actualText = browser.$(diaryPageSelectors.firstItemDescription).getText();
+    const expectedText = diaryPageData.howWasYourDay;
     expect(actualText).eq(expectedText);
   });
 
   it('should first item in the list be equal created day report mark', () => {
-    const actualText = browser.$('//div[@qa="day-report-item-0"]//div[@qa="labels"]//span').getText();
-    const expectedText = 'Helped classmates';
+    const actualText = browser.$(diaryPageSelectors.firstItemMark).getText();
+    const expectedText = diaryPageData.checkBoxDescription;
     expect(actualText).eq(expectedText);
   });
 

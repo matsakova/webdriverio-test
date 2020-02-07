@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
-const { loginAsAdmin, logoutAsAdmin } = require('./actions');
-
+const { loginAsAdmin, logout, clickDiaryButton } = require('./actionsDayReport');
+const { approveSelectors } = require('./dataDayReport');
 
 describe('DAY REPORT APPROVE', () => {
   before('Login as admin', () => {
@@ -10,22 +10,21 @@ describe('DAY REPORT APPROVE', () => {
   });
 
   after('Logout', () => {
-    logoutAsAdmin();
+    logout();
     browser.pause(2000);
   });
 
   it('should click Diary button', () => {
-    browser.$('//div[@id="site-menu"]//a[@qa="diary-link"]').click();
-    browser.pause(500);
+    clickDiaryButton ();
   });
 
   it('should click Approve button', () => {
-    browser.$('//div[@qa="day-report-item-0"]//button[@qa="approve-button"]').click();
+    browser.$(approveSelectors.approveButton).click();
     browser.pause(1000);
   });
 
   it('should verify diary was approved', () => {
-    browser.$('//div[@qa="day-report-item-0"]//span[@qa="approved-mark"]').isExisting();
+    browser.$(approveSelectors.approvedMark).isExisting();
     browser.pause(500);
   });
 
