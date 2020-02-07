@@ -1,14 +1,14 @@
 const { expect } = require('chai');
 
-const { URL_LOGIN, pageLoginSelectors, adminData, answers, pageDailyReportsSelectors, createDayReportPageSelectors } = require('./register_data');
+const { loginAsStudent, logoutAsStudent } = require('./actions');
 
 describe('DAY REPORT CREATE', () => {
-  before('Login as admin', () => {
-    browser.url(URL_LOGIN);
-    browser.$('//form//input[@name="email"]').setValue('admin@test.com');
-    browser.$('//form//input[@name="password"]').setValue('11111');
-    browser.$('//form//button[@type="submit"]').click();
-    browser.pause(1000);
+  before('Login as student', () => {
+    loginAsStudent();
+  });
+
+  after('Logout as Student', () => {
+    logoutAsStudent();
   });
 
   it('should click Diary button', () => {
