@@ -4,19 +4,10 @@ const loginSelectors = {
   loginButton: '//form//button[@type="submit"]'
 };
 
-const loginAsAdminData = {
-  email: 'admin@test.com',
-  password: '11111'
-};
 
 const logoutSelectors = {
   dropdown: '//a[@class="dropdown-toggle nav-link"]',
   logoutButton: '//button[contains(text(),"Logout")]'
-};
-
-const loginAsStudentData = {
-  email: 'nicole@test.com',
-  password: '123456'
 };
 
 const diaryButtonMainViewSelectors = {
@@ -34,12 +25,6 @@ const diaryPageSelectors = {
   firstItemMark: '//div[@qa="day-report-item-0"]//div[@qa="labels"]//span'
 };
 
-const diaryPageData = {
-  morale: '9',
-  hours: '5',
-  howWasYourDay: 'gogogogogogogoogogogogogogogogo',
-  checkBoxDescription: 'Helped classmates'
-};
 
 const approveSelectors = {
   approveButton: '//div[@qa="day-report-item-0"]//button[@qa="approve-button"]',

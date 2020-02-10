@@ -1,60 +1,56 @@
-const { expect } = require('chai');
+import {expect} from 'chai';
 
-const { loginAsStudent, logout, clickDiaryButton } = require('./actionsDayReport');
-const { diaryPageSelectors, diaryPageData } = require('./dataDayReport');
+import LoginPage from "../login/LoginPage";
+import ProfilePage from "../profile/ProfilePage";
+import DiaryPage from "./DiaryPage";
+import CreateDayReportPage from "./CreateDayReportPage";
 
 describe('DAY REPORT CREATE', () => {
   before('Login as student', () => {
-    loginAsStudent();
+    LoginPage.loginAsStudent();
   });
 
   after('Logout as Student', () => {
-    logout();
+    LoginPage.logout();
   });
 
   it('should click Diary button', () => {
-    clickDiaryButton ();
+    ProfilePage.diaryBtn();
   });
 
   it('should click Create day report button', () => {
-    browser.$(diaryPageSelectors.createDayReportButton).click();
-    browser.pause(300);
+    DiaryPage.createDayReportBtn();
   });
 
   it('should mark the checkbox', () => {
-    browser.$(diaryPageSelectors.markCheckbox).click();
+    CreateDayReportPage.markCheckBox();
   });
 
   it('should choose one option in Morale dropdown', () => {
-    const dropdown = browser.$(diaryPageSelectors.morale);
-    dropdown.selectByVisibleText(diaryPageData.morale);
+    CreateDayReportPage.selectMorale();
   });
 
   it('should fill out Hours field', () => {
-    const element = browser.$(diaryPageSelectors.hours);
-    element.setValue(diaryPageData.hours);
+    CreateDayReportPage.hoursFieldFillOut();
   });
 
   it('should fill out How was your day? field', () => {
-    const element = browser.$(diaryPageSelectors.howWasYourDay);
-    element.setValue(diaryPageData.howWasYourDay);
+    CreateDayReportPage.howWasYourDayFillOut();
   });
 
   it('should click Save button', () => {
-    const element = browser.$(diaryPageSelectors.saveButton);
-    element.click();
-    browser.pause(2000);
+    CreateDayReportPage.saveBtnClick();
   });
 
   it('should first item in the list be equal created day report description', () => {
-    const actualText = browser.$(diaryPageSelectors.firstItemDescription).getText();
-    const expectedText = diaryPageData.howWasYourDay;
+    const actualText = DiaryPage.createdDayReportDescription.getText();
+    const expectedText = 'gogogogogogogoogogogogogogogogo';
     expect(actualText).eq(expectedText);
   });
 
   it('should first item in the list be equal created day report mark', () => {
-    const actualText = browser.$(diaryPageSelectors.firstItemMark).getText();
-    const expectedText = diaryPageData.checkBoxDescription;
+    const actualText = DiaryPage.createdDayReportMark.getText();
+    const expectedText = 'Helped classmates';
     expect(actualText).eq(expectedText);
   });
 

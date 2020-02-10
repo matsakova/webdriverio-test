@@ -1,6 +1,8 @@
-const { expect } = require('chai');
+//const { expect } = require('chai');
+import {expect} from 'chai';
 
-const { loginAsAdmin, logout } = require('./actionsFlashCards');
+//const { loginAsAdmin, logout } = require('./actionsFlashCards');
+import {loginAsAdmin, logout} from './actionsFlashCards';
 
 const { flashCardsSelectors, flashCardsAnswers } = require('./dataFlashCards');
 

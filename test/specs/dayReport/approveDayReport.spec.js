@@ -1,31 +1,26 @@
-const { expect } = require('chai');
-
-const { loginAsAdmin, logout, clickDiaryButton } = require('./actionsDayReport');
-const { approveSelectors } = require('./dataDayReport');
+import LoginPage from "../login/LoginPage";
+import ProfilePage from "../profile/ProfilePage";
+import DiaryPage from "./DiaryPage";
 
 describe('DAY REPORT APPROVE', () => {
   before('Login as admin', () => {
-    loginAsAdmin();
-    browser.pause(2000);
+    LoginPage.loginAsAdmin();
   });
 
   after('Logout', () => {
-    logout();
-    browser.pause(2000);
+    LoginPage.logout();
   });
 
   it('should click Diary button', () => {
-    clickDiaryButton ();
+    ProfilePage.diaryBtn();
   });
 
   it('should click Approve button', () => {
-    browser.$(approveSelectors.approveButton).click();
-    browser.pause(1000);
+    DiaryPage.approveBtn();
   });
 
   it('should verify diary was approved', () => {
-    browser.$(approveSelectors.approvedMark).isExisting();
-    browser.pause(500);
+    DiaryPage.approvedMark();
   });
 
 });

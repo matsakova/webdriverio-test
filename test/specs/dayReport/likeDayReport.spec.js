@@ -1,33 +1,27 @@
-const { expect } = require('chai');
-
-const { loginAsAdmin, logout, clickDiaryButton } = require('./actionsDayReport');
-
-const { likeSelectors } = require('./dataDayReport');
+import LoginPage from "../login/LoginPage";
+import ProfilePage from "../profile/ProfilePage";
+import DiaryPage from "./DiaryPage";
 
 
 describe('DAY REPORT LIKE', () => {
   before('Login as admin', () => {
-    loginAsAdmin();
-    browser.pause(500);
+    LoginPage.loginAsAdmin();
   });
 
   after('Logout', () => {
-    logout();
-    browser.pause(2000);
+    LoginPage.logout()
   });
 
   it('should click Diary button', () => {
-    clickDiaryButton ();
+    ProfilePage.diaryBtn();
   });
 
   it('should click Like button', () => {
-    browser.$(likeSelectors.likeButton).click();
-    browser.pause(1000);
+    DiaryPage.likeBtn();
   });
 
   it('should verify whether diary was liked', () => {
-    const el = browser.$(likeSelectors.likeMark).isEnabled();
-    expect(el).eq(false);
+    DiaryPage.likeMark();
   });
 
 });

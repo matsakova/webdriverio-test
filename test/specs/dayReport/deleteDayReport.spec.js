@@ -1,28 +1,23 @@
-const { expect } = require('chai');
-
-const { loginAsAdmin, logout, clickDiaryButton } = require('./actionsDayReport');
-
-const { deleteSelectors } = require('./dataDayReport');
+import LoginPage from "../login/LoginPage";
+import ProfilePage from "../profile/ProfilePage";
+import DiaryPage from "./DiaryPage";
 
 
 describe('DAY REPORT DELETE', () => {
   before('Login as admin', () => {
-    loginAsAdmin();
-    browser.pause(500);
+    LoginPage.loginAsAdmin();
   });
 
   after('Logout as admin', () => {
-    logout();
-    browser.pause(2000);
+    LoginPage.logout()
   });
 
   it('should click Diary button', () => {
-    clickDiaryButton ();
+    ProfilePage.diaryBtn();
   });
 
   it('should click Delete button', () => {
-    browser.$(deleteSelectors.deleteButton).click();
-    browser.pause(1000);
+    DiaryPage.deleteBtn();
   });
 
 });
