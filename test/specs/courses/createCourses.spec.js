@@ -1,44 +1,43 @@
-const { expect } = require('chai');
+import LoginPage from "../login/LoginPage";
+import ProfilePage from "../profile/ProfilePage";
+import CoursesPage from "./CoursesPage";
+import CreateNewCoursePage from "./CreateNewCoursePage";
 
-const { URL_LOGIN, pageLoginSelectors, adminData, coursesPageAnswers, coursesPageSelectors} = require('../register/register_data');
 
 describe('CREATE COURSES', () => {
   before('Login as admin', () => {
-    browser.url(URL_LOGIN);
-    browser.$('//form//input[@name="email"]').setValue('admin@test.com');
-    browser.$('//form//input[@name="password"]').setValue('11111');
-    browser.$('//form//button[@type="submit"]').click();
-    browser.pause(1000);
+    LoginPage.loginAsAdmin()
+  });
+
+  after('Logout', () => {
+    LoginPage.logout();
   });
 
   it('should click Courses button', () => {
-    browser.$('//div[@id="site-menu"]//a[@qa="courses-link"]').click();
-    browser.pause(1000);
+    ProfilePage.coursesBtn();
   });
 
   it('should click Create new Course button', () => {
-    browser.$('//div[@class="form-group"]//a').click();
-    browser.pause(1000);
+    CoursesPage.createNewCourseBtn();
   });
 
   it('should fill out Course name field', () => {
-    const element = browser.$('//form//input[@name="name"]');
+    const element = CreateNewCoursePage.courseNameField;
     element.setValue('new new course');
   });
 
   it('should fill out Course description field', () => {
-    const element = browser.$('//form//input[@name="description"]');
+    const element = CreateNewCoursePage.courseDescriptionField;
     element.setValue('abc');
   });
 
   it('should choose one option in Access type dropdown', () => {
-    const dropdownList = browser.$('//form//select[@name="accessType"]');
+    const dropdownList = CreateNewCoursePage.accessTypeDropdown;
     dropdownList.selectByVisibleText('All');
   });
 
   it('should click Create button', () => {
-    browser.$('//form//button[@type="submit"]').click();
-    browser.pause(1000);
+    CreateNewCoursePage.createBtn();
   });
 
 

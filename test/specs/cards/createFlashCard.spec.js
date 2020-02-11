@@ -1,77 +1,74 @@
-//const { expect } = require('chai');
 import {expect} from 'chai';
 
-//const { loginAsAdmin, logout } = require('./actionsFlashCards');
-import {loginAsAdmin, logout} from './actionsFlashCards';
+import LoginPage from "../login/LoginPage";
+import ProfilePage from "../profile/ProfilePage";
+import CardsPage from "./CardsPage";
+import CreateNewFlashGroupPage from "./CreateNewFlashGroupPage";
+import CreatedGroupTitlePage from "./CreatedGroupTitlePage";
 
-const { flashCardsSelectors, flashCardsAnswers } = require('./dataFlashCards');
 
 describe('FLASH GROUP CREATE', () => {
   before('Login as admin', () => {
-    loginAsAdmin ();
+    LoginPage.loginAsAdmin();
   });
 
   after('Logout', () => {
-    logout();
+    LoginPage.logout();
   });
 
   it('should click top menu Cards', () => {
-    browser.$(flashCardsSelectors.cardsButton).click();
+    ProfilePage.cardsBtn();
   });
 
   it('should click Create new FlashGroup button', () => {
-    browser.$(flashCardsSelectors.createNewFlashGroupButton).click();
-    browser.pause(500);
+    CardsPage.createNewFlashGroupBtn();
   });
 
   it('should check if modal form is open', () => {
-    const el = browser.$(flashCardsSelectors.modalForm);
-    expect(el.isDisplayed()).true;
+    CreateNewFlashGroupPage.modalForm();
   });
 
   it('should check if modal form title is correct', () => {
-    const actualText = browser.$(flashCardsSelectors.modalFormTitle).getText();
-    const expectedText = flashCardsAnswers.title;
+    const actualText = CreateNewFlashGroupPage.modalFormTitle.getText();
+    const expectedText = 'Create Flash Group';
     expect(actualText).eq(expectedText);
   });
 
   it('should fill out input group name', () => {
-    const el = browser.$(flashCardsSelectors.groupName);
-    el.setValue(flashCardsAnswers.groupName);
+    const el = CreateNewFlashGroupPage.inputGroupName;
+    el.setValue('My group name 555');
   });
 
   it('should fill out input group description', () => {
-    const el = browser.$(flashCardsSelectors.groupDescription);
-    el.setValue(flashCardsAnswers.groupDescription);
+    const el = CreateNewFlashGroupPage.inputGroupDescription;
+    el.setValue('7777777');
   });
 
   it('should submit form', () => {
-    const el = browser.$(flashCardsSelectors.submitButton);
-    el.click();
+    CreateNewFlashGroupPage.submitBtn();
     browser.pause(500);
   });
 
   it('should first item in the list be equal created group title', () => {
-    const actualTitle = browser.$(flashCardsSelectors.firstItemTitle).getText();
-    const expectedTitle = flashCardsAnswers.groupName;
+    const actualTitle = CardsPage.createdGroupTitle.getText();
+    const expectedTitle = 'My group name 555';
     expect(actualTitle).eq(expectedTitle);
   });
 
   it('should first item in the list be equal created group description', () => {
-    const actualDescription = browser.$(flashCardsSelectors.firstItemDescription).getText();
-    const expectedDescription = flashCardsAnswers.groupDescription;
+    const actualDescription = CardsPage.createdGroupDescription.getText();
+    const expectedDescription = '7777777';
     expect(actualDescription).eq(expectedDescription);
   });
 
   it('should verify created group title is clickable', () => {
-    const el = browser.$(flashCardsSelectors.groupTitle);
-    el.click();
+    CardsPage.groupTitleIsClickable();
     browser.pause(300);
   });
 
   it('should clicked group have correct title', () => {
-    const actual = browser.$(flashCardsSelectors.clickedGroupTitle).getText();
-    const expected = flashCardsAnswers.groupName;
+    const actual = CreatedGroupTitlePage.createdGroupTitle.getText();
+    const expected = 'My group name 555';
     expect(actual).eq(expected);
   });
   

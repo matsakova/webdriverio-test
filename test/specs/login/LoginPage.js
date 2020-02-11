@@ -1,5 +1,6 @@
 import Page from "../Page";
 
+
 class LoginPage extends Page {
 
     get email() {
@@ -33,6 +34,7 @@ class LoginPage extends Page {
         this.submitBtn.click();
         browser.pause(3000);
     }
+
 
     logout() {
         browser.$('//a[@class="dropdown-toggle nav-link"]').click();

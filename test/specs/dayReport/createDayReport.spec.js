@@ -10,7 +10,7 @@ describe('DAY REPORT CREATE', () => {
     LoginPage.loginAsStudent();
   });
 
-  after('Logout as Student', () => {
+  after('Logout', () => {
     LoginPage.logout();
   });
 
